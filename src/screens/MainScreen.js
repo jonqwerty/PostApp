@@ -22,7 +22,7 @@ MainScreen.navigationOptions = ({ navigation }) => ({
     headerRight: (
         () => 
         <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-            <Item title="Take foto" iconName="ios-camera" onPress={() => console.log('press photo')} />
+            <Item title="Take foto" iconName="ios-camera" onPress={() => navigation.push('Create')} />
         </HeaderButtons>
         ),
     headerLeft: (
