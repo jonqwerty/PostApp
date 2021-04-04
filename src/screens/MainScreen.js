@@ -17,7 +17,7 @@ export const MainScreen = ({navigation}) => {
     )
 }
 
-MainScreen.navigationOptions = {
+MainScreen.navigationOptions = ({ navigation }) => ({
     headerTitle: 'Мій блог',
     headerRight: (
         () => 
@@ -28,8 +28,8 @@ MainScreen.navigationOptions = {
     headerLeft: (
         () => 
         <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-            <Item title="Toggle Drawer" iconName="ios-menu" onPress={() => console.log('press photo')} />
+            <Item title="Toggle Drawer" iconName="ios-menu" onPress={() => navigation.toggleDrawer()} />
         </HeaderButtons>
         )
-}
+})
 
