@@ -3,16 +3,15 @@ import {View, Text, StyleSheet, Image, Button, ScrollView, Alert} from 'react-na
 import { useDispatch, useSelector} from 'react-redux'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import { AppHeaderIcon } from '../components/AppHeaderIcon'
-import { DATA } from '../data'
 import { THEME } from '../theme'
-import { toggleBooked } from '../store/actions/post'
+import { removePost, toggleBooked } from '../store/actions/post'
 import { State } from 'react-native-gesture-handler'
 
 export const PostScreen = ({navigation}) => {
     const dispatch = useDispatch()
     const postId = navigation.getParam('postId')
 
-    const post = DATA.find(p => p.id === postId)
+    const post = useSelector(state => state.post.allPosts.find(p => p.id === postId))
 
     const booked = useSelector(state => state.post.bookedPosts.some(post => post.id === postId))
 
@@ -39,9 +38,16 @@ export const PostScreen = ({navigation}) => {
                 text: "Відмінити",
                 style: "cancel"
               },
-              { text: "Видалити", style: 'destructive', onPress: () => {} }
+              { text: "Видалити", style: 'destructive', onPress: () => {
+                  navigation.navigate('Main')
+                  dispatch(removePost(postId))
+              } }
             ]
           );
+    }
+
+    if(!post) {
+        return null
     }
 
     return (
