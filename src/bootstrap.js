@@ -12,4 +12,6 @@ export async function bootstrap() {
   } catch (e) {
     console.log('Error: ', e)
   }
+
+  
 }
